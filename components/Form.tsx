@@ -28,7 +28,6 @@ const HomePage: React.FC = () => {
   } = useFormularioPedido()
 
   const handleReset = () => {
-    // Reiniciar el estado del formulario
     updateFormData('nombre', '')
     updateFormData('direccion', '')
     updateFormData('telefono', '')
@@ -39,16 +38,23 @@ const HomePage: React.FC = () => {
     updateFormData('fundasPaquetes', [{ cantidad: 1, paquete: '' }])
     updateFormData('bebidas', [{ cantidad: 1, bebida: '', tamaño: '250ml' }])
     updateFormData('otros', [{ descripcion: '' }])
-    // Redirigir a la página principal
   }
 
   const handleSubmit = () => {
     if (!validate()) {
       alert('Por favor, completa todos los campos requeridos.')
+      return
     }
   }
 
   const currentDate = format(new Date(), 'eeee d MMMM yyyy', { locale: es })
+
+  const cleanFormData = {
+    ...formData,
+    fundasPaquetes: formData.fundasPaquetes.filter((fp) => fp.cantidad && fp.paquete),
+    bebidas: formData.bebidas.filter((b) => b.cantidad && b.bebida && b.tamaño),
+    otros: formData.otros.filter((o) => o.descripcion)
+  }
 
   return (
     <div className='p-6 max-w-xl mx-auto bg-white shadow-lg rounded-lg'>
@@ -144,7 +150,7 @@ const HomePage: React.FC = () => {
       {isFormValid && (
         <div className='flex justify-center mt-6'>
           <PDFDownloadLink
-            document={<PdfDocument data={formData} />}
+            document={<PdfDocument data={cleanFormData} />}
             fileName={`Pedido_${formData.nombre}_${currentDate}.pdf`}
             className='flex items-center px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300'
           >
