@@ -107,6 +107,10 @@ const PdfDocument: React.FC<PdfDocumentProps> = ({ data }) => {
               <Text style={styles.cell}>Bolsa: {data.cantidadBolsa}</Text>
               {data.cantidadBolsa}
             </View>
+          </View>
+        )}
+        {data.cantidadCaja.length > 0 && (
+          <View style={styles.section}>
             <View style={styles.row}>
               <Text style={styles.cell}>Caja: {data.cantidadCaja}</Text>
             </View>
