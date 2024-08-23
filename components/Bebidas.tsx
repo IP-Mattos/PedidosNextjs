@@ -33,13 +33,17 @@ export const Bebidas: React.FC<BebidasProps> = ({ bebidas, onAdd, onRemove, onCh
           className='border border-gray-300 p-3 ml-2 rounded-md'
         >
           <option value='250ml'>250ml</option>
+          <option value='330ml'>330ml</option>
           <option value='500ml'>500ml</option>
+          <option value='750ml'>750ml</option>
           <option value='1L'>1L</option>
           <option value='1.5L'>1.5L</option>
           <option value='2L'>2L</option>
+          <option value='2.250L'>2.50L</option>
           <option value='2.5L'>2.5L</option>
           <option value='3L'>3L</option>
           <option value='6L'>6L</option>
+          <option value='10L'>10L</option>
         </select>
         <button onClick={() => onRemove(index)} className='ml-2 text-red-500'>
           Eliminar
