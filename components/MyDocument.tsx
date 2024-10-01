@@ -122,7 +122,7 @@ const PdfDocument: React.FC<PdfDocumentProps> = ({ data }) => {
             {data.fundasPaquetes.map((item, index) => (
               <View key={index} style={styles.row}>
                 <Text style={styles.cell}>
-                  Paquete o Funda: {item.cantidad} - {item.paquete}
+                  {item.cantidad} - {item.paquete}
                 </Text>
               </View>
             ))}
